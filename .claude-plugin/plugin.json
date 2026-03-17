@@ -1,0 +1,8 @@
+{
+  "name": "claude-code-codex-skill",
+  "version": "1.0.0",
+  "description": "OpenAI Codex CLI integration for Claude Code — web search, fact-checking, second opinions, and code review",
+  "repository": "https://github.com/ist-j-ichikawa/claude-code-codex-skill",
+  "license": "MIT",
+  "keywords": ["codex", "web-search", "fact-check", "second-opinion", "code-review", "bedrock"]
+}

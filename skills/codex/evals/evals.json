@@ -1,0 +1,41 @@
+{
+  "skill_name": "codex",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Codexに聞いて、Rustのlifetimeで'staticと通常のlifetimeの違いを簡潔に説明させて",
+      "expected_output": "codex exec を --ephemeral -s read-only で実行。web検索なし。プロンプトは位置引数として渡される。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "最新のNode.js LTSバージョンをCodexで調べて",
+      "expected_output": "codex exec を -c 'web_search=\"live\"' 付きで実行。「最新の」がトリガーとなりweb検索を有効化。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "このリポのコードについてCodexにレビューさせて",
+      "expected_output": "codex exec review --uncommitted または codex exec review --base <branch> を使用。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "OpenAI の Responses API って2026年3月時点で正式リリースされてる？Codexでファクトチェックして",
+      "expected_output": "codex exec を -c 'web_search=\"live\"' 付きで実行。ファクトチェック＋日付言及でweb検索を有効化。timeout を 300000 に設定。",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "GPTに聞いてみて、この関数のパフォーマンス改善方法",
+      "expected_output": "codex exec を --ephemeral -s read-only で実行。web検索不要。関数のコードをプロンプトに含める。",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "セカンドオピニオンが欲しい。このアーキテクチャ設計でいいか別のAIにも聞いて",
+      "expected_output": "codex exec を --ephemeral -s read-only で実行。アーキテクチャのコンテキストをプロンプトに含める。web検索不要。",
+      "files": []
+    }
+  ]
+}
