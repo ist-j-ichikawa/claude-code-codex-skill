@@ -26,10 +26,16 @@ export OPENAI_API_KEY=sk-...   # 環境変数で設定
 
 ## インストール
 
-### GitHub からインストール
+### user scope（全プロジェクトで使用）
 
 ```bash
-claude plugin install ist-j-ichikawa/claude-code-codex-skill
+claude plugin install -s user ist-j-ichikawa/claude-code-codex-skill
+```
+
+### project scope（特定プロジェクトのみ）
+
+```bash
+claude plugin install -s project ist-j-ichikawa/claude-code-codex-skill
 ```
 
 ### ローカルからインストール
