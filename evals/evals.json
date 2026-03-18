@@ -1,0 +1,41 @@
+{
+  "skill_name": "codex",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Codexで最新のDeno 2のリリースノートを調べて",
+      "expected_output": "config.toml がないディレクトリで実行。Step 0 で「ファイルが存在しない」と正しく判定し、-c 'web_search=\"live\"' を明示的に付与して codex exec を実行する",
+      "files": [],
+      "context": "カレントディレクトリに .codex/config.toml が存在しない状態で実行する",
+      "assertions": [
+        {"text": "config の内容をハルシネーションしていない（存在しないと明示している）", "type": "qualitative"},
+        {"text": "最終コマンドに -c 'web_search=\"live\"' が含まれている", "type": "programmatic"},
+        {"text": "最終コマンドに --ephemeral -s read-only が含まれている", "type": "programmatic"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Codexに聞いて、Rustのlifetimeで'staticと通常のlifetimeの違いを説明して",
+      "expected_output": "config.toml がないディレクトリで実行。Web検索不要な純粋な技術質問なので -c 'web_search=\"live\"' は付けない",
+      "files": [],
+      "context": "カレントディレクトリに .codex/config.toml が存在しない状態で実行する",
+      "assertions": [
+        {"text": "config の内容をハルシネーションしていない（存在しないと明示している）", "type": "qualitative"},
+        {"text": "最終コマンドに -c 'web_search=\"live\"' が含まれていない", "type": "programmatic"},
+        {"text": "最終コマンドに --ephemeral -s read-only が含まれている", "type": "programmatic"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Codexで最新のNode.js LTSバージョンを調べて",
+      "expected_output": "プロジェクト config に web_search='live' が設定済みの状態で実行。-c 'web_search=\"live\"' を重複付与しない",
+      "files": [],
+      "context": "カレントディレクトリの .codex/config.toml に web_search = 'live' が設定されている状態で実行する",
+      "assertions": [
+        {"text": "config の web_search = 'live' 設定を正しく検出している", "type": "qualitative"},
+        {"text": "最終コマンドに -c 'web_search=\"live\"' が含まれていない（重複回避）", "type": "programmatic"},
+        {"text": "最終コマンドに --ephemeral -s read-only が含まれている", "type": "programmatic"}
+      ]
+    }
+  ]
+}

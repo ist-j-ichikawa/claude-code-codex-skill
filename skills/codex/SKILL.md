@@ -65,8 +65,10 @@ codex exec review --base main
 
 ### Step 0: プロジェクト設定の確認
 
-カレントディレクトリの `.codex/config.toml` を読む。config.toml に書かれた設定は
-codex exec 実行時に自動適用されるため、`-c` で重複指定しないこと。
+カレントディレクトリの `.codex/config.toml` を確認する。
+- **ファイルが存在する場合**: 中身を読み、設定済みの値（model, web_search 等）を把握する。config.toml の設定は自動適用されるため `-c` で重複指定しない
+- **ファイルが存在しない場合**: グローバル設定（`~/.codex/config.toml`）を確認する
+- **どちらも存在しない場合**: Codex のデフォルト設定で動作する。必要なオプションはすべて `-c` や `-m` で明示指定する
 
 ### Step 1: プロンプトの構築
 
