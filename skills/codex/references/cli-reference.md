@@ -151,5 +151,6 @@ enabled = true
 
 `model_reasoning_effort` に指定可能な値:
 `minimal` / `low` / `medium`(デフォルト) / `high` / `xhigh`
+（利用可能なレベルはモデルにより異なる。例: gpt-5.4-mini は `medium`/`high` のみ）
 
 設定の優先順位: CLI フラグ > `-c key=value` > `~/.codex/config.toml`

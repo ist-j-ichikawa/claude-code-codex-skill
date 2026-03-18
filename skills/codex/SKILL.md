@@ -133,7 +133,8 @@ codex exec --ephemeral -s read-only -m gpt-5.4-mini "プロンプト"
 codex exec --ephemeral -s read-only "プロンプト"
 ```
 
-推論レベル: `medium`(デフォルト) / `high`。`-c model_reasoning_effort=high` で指定
+推論レベル: `low` / `medium`(デフォルト) / `high`。`-c model_reasoning_effort=high` で指定。
+全レベル（`minimal`〜`xhigh`）は `references/cli-reference.md` を参照
 
 ## よく使うオプション
 
@@ -158,6 +159,7 @@ codex exec --ephemeral -s read-only "プロンプト"
 | タイムアウト | Bash の `timeout` を 300000 に設定して再実行 |
 | 長時間応答なし | `-c model_reasoning_effort=low` で再試行 |
 | `--search` エラー | exec では使えない。`-c 'web_search="live"'` に置き換える |
+| モデル名エラー | TUI で `/model` を実行して利用可能なモデル名を確認 |
 | その他 exit code 非0 | stderr（`2>&1` で取得）の内容を確認して報告する |
 
 ## 公式ドキュメント
