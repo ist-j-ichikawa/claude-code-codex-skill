@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2026-03-18
+
+### Added
+
+- モデル選択ガイダンス: タスクの複雑さに応じて `gpt-5.4-mini` / `gpt-5.4` を自動選択
+- ユーザー指定モデルのパススルー: テーブルにないモデル名でもそのまま `-m` に渡す
+
+### Fixed
+
+- Step 0: config.toml が存在しない場合のフォールバック（ローカル → グローバル → デフォルト）を追加。config 不在時のハルシネーションを防止
+
 ## [1.0.0] - 2026-03-17
 
 ### Added
