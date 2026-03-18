@@ -114,18 +114,25 @@ Bash ツールのタイムアウトはデフォルト120秒。Codex の応答が
 - 出力が長大（200行超）な場合は要約してから表示する
 - exit code が非0の場合は stderr を確認してエラーを報告する
 
-## モデル・推論レベルの変更
+## モデル選択
 
-`.codex/config.toml` がある場合はそれに従う。明示的に変えたい場合のみ指定:
+config.toml の `model` 設定がデフォルト。タスクの複雑さに応じて `-m` で切り替える:
+
+| タスク | モデル | 理由 |
+|--------|--------|------|
+| 簡単な質問・バージョン確認・コード説明 | `gpt-5.4-mini` | 2倍高速、レート制限の30%で済む |
+| ファクトチェック（複数項目）・複雑な分析 | `gpt-5.4`（デフォルト） | 高い推論力が必要 |
+| コードレビュー | `gpt-5.4-mini` or `gpt-5.4` | 規模と複雑さで判断 |
 
 ```bash
-codex exec --ephemeral -s read-only \
-  -m o4-mini \
-  -c model_reasoning_effort=high \
-  "プロンプト"
+# 軽量タスク → mini で高速・低コスト
+codex exec --ephemeral -s read-only -m gpt-5.4-mini "プロンプト"
+
+# 複雑なタスク → デフォルトモデル（config.toml に従う）
+codex exec --ephemeral -s read-only "プロンプト"
 ```
 
-推論レベル: `minimal` / `low` / `medium`(デフォルト) / `high` / `xhigh`
+推論レベル: `medium`(デフォルト) / `high`。`-c model_reasoning_effort=high` で指定
 
 ## よく使うオプション
 
