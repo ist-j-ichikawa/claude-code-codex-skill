@@ -1,0 +1,16 @@
+{
+  "name": "codex-skill-marketplace",
+  "metadata": {
+    "description": "OpenAI Codex CLI integration for Claude Code"
+  },
+  "owner": {
+    "name": "ist-j-ichikawa"
+  },
+  "plugins": [
+    {
+      "name": "claude-code-codex-skill",
+      "description": "OpenAI Codex CLI integration for Claude Code — web search, fact-checking, second opinions, and code review",
+      "source": "./"
+    }
+  ]
+}
