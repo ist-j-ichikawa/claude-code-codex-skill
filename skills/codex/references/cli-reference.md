@@ -1,9 +1,12 @@
-# Codex CLI Reference (v0.115.0)
+# Codex CLI Reference (v0.116.0)
 
 > このファイルはスキル実行時に不明な点がある場合のみ参照する。
 > 公式ドキュメント: https://developers.openai.com/codex
+> CLI リファレンス: https://developers.openai.com/codex/cli/reference
+> 非対話モード: https://developers.openai.com/codex/noninteractive
+> 設定リファレンス: https://developers.openai.com/codex/config-reference
 > ソースコード: https://github.com/openai/codex/tree/main/codex-rs
-> 最終更新: 2026-03-17（v0.115.0 で確認済み）
+> 最終更新: 2026-03-21（v0.116.0 で確認済み）
 
 ## 目次
 
@@ -154,3 +157,15 @@ enabled = true
 （利用可能なレベルはモデルにより異なる。例: gpt-5.4-mini は `medium`/`high` のみ）
 
 設定の優先順位: CLI フラグ > `-c key=value` > `~/.codex/config.toml`
+
+## トラブルシューティング
+
+| 症状 | 対処 |
+|---|---|
+| `codex: command not found` | `npm i -g @openai/codex` か `brew install --cask codex` |
+| 認証エラー (401/403) | `OPENAI_API_KEY` を確認、または `codex login` を再実行 |
+| タイムアウト | Bash の `timeout` を 300000 に設定して再実行 |
+| 長時間応答なし | `-c model_reasoning_effort=low` で再試行 |
+| `--search` エラー | exec では使えない。`-c 'web_search="live"'` に置き換える |
+| モデル名エラー | TUI で `/model` を実行して利用可能なモデル名を確認 |
+| その他 exit code 非0 | stderr（`2>&1` で取得）の内容を確認して報告する |
