@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] - 2026-03-25
+
+### Added
+
+- 高速Web検索: `-p search` プロファイルで mini + low reasoning + live web search を一括設定
+- GPT-5.4-nano ドキュメント: API キー認証環境向けの最速・最安モデル（cli-reference.md）
+- 推論レベル `none`（GPT-5.2+）のドキュメント
+- モデル一覧テーブル（GPT-5.4 世代: 5.4 / mini / nano）
+- プロファイル機能のガイド（config.toml の `[profiles.<name>]` セクション）
+
+### Changed
+
+- モデル選択テーブルに「推論」列を追加。Web検索タスクに `low` を推奨
+- config.toml 例を GPT-5.4 世代に更新（model_verbosity のデフォルトを medium に）
+- SKILL.md を 147行 → 126行に圧縮（Progressive Disclosure 強化）
+
 ## [1.1.0] - 2026-03-18
 
 ### Added
