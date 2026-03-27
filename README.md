@@ -101,7 +101,7 @@ claude-code-codex-skill/
 │   └── codex/
 │       ├── SKILL.md             # スキル本体
 │       └── references/
-│           ├── cli-reference.md # CLI 全フラグ・config 詳細（v0.116.0）
+│           ├── cli-reference.md # CLI 全フラグ・config 詳細（v0.117.0）
 │           └── use-cases.md     # ユースケース集（実績ベース）
 ├── evals/
 │   └── evals.json               # テストケース

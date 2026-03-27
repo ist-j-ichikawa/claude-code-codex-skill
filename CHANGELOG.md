@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.3.0] - 2026-03-27
+
+### Added
+
+- `codex exec review --commit <SHA>`: 特定コミットの変更をレビューする新フラグ
+- 推論レベル `xhigh` のドキュメント（gpt-5.4/5.3-codex/5.2-codex/5.2/5.1-codex-max 対応）
+- 新コマンドのドキュメント: `codex app`, `codex app-server`, `codex debug`
+- review サブコマンドのフラグ一覧セクション（`--commit`, `--title`）
+- config.toml: `service_tier`, `personality`, granular `approval_policy` を追記
+
+### Changed
+
+- Codex CLI v0.116.0 → v0.117.0 に追従
+- Web検索デフォルトが `cached`（OpenAI管理インデックス）であることを明示
+- 推論レベルから `none` を削除（models.json に未定義）、`minimal` を gpt-5 限定と明記
+- モデル一覧を models.json の全公開モデルに更新（gpt-5.4 〜 gpt-5.1-codex-mini）
+- gpt-5.4-mini / nano が CLI ピッカー未登録だが `-m` / プロファイルで動作する旨を注記
+- `-a` フラグを対話モード専用に移動、`--local-provider` を共通フラグに追加
+
 ## [1.2.0] - 2026-03-25
 
 ### Added

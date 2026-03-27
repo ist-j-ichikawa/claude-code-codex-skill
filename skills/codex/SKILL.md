@@ -38,13 +38,14 @@ WebSearch が利用可能な場合はそちらを優先する。
 # 質問・調査（最も基本的な形）
 codex exec --ephemeral -s read-only "プロンプト"
 
-# 高速Web検索（config.toml に [profiles.search] があれば推奨）
+# Web検索（config.toml に [profiles.search] があれば推奨）
 codex exec --ephemeral -s read-only -p search "プロンプト"
-# プロファイル未設定時のフォールバックは references/cli-reference.md を参照
+# プロファイル未設定時: -m gpt-5.4-mini -c 'model_reasoning_effort="low"' -c 'web_search="live"'
 
 # コードレビュー
 codex exec review --uncommitted
 codex exec review --base main
+codex exec review --commit <SHA>
 ```
 
 ## フロー
@@ -65,14 +66,14 @@ codex exec review --base main
 
 ### Step 2: Web検索の判定
 
-以下のいずれかに該当する場合、ライブWeb検索を有効にする:
+デフォルトは `cached`（OpenAI管理インデックス）。以下に該当する場合は `live` に切り替える:
 - 「最新の」「現在の」「調べて」「ニュース」「公式ドキュメント」「料金」「リリース」への言及
 - バージョン番号・日付・URL・時事的な話題
 - ファクトチェック・公式情報の確認
 - WebSearch ツールが利用不可な環境で Web情報が必要な場合
 
-Web検索が必要と判定したら、Step 0 で確認した `[profiles.search]` の有無に応じて
-`-p search` またはフォールバック（基本パターン参照）で高速化する。
+`live` が必要と判定したら、Step 0 で確認した `[profiles.search]` の有無に応じて
+`-p search` またはフォールバック（基本パターン参照）で切り替える。
 config.toml に `web_search = "live"` があれば追加指定は不要。
 技術質問でも正確な情報が求められる場合は live 検索を使う。
 不要なのは概念的な説明（例: 「再帰とは何か」）など、最新性が不要なケースのみ。
@@ -103,13 +104,15 @@ Codex の応答が長くなりそうな場合は `timeout` パラメータを 30
 
 | タスク | モデル | 推論 | 理由 |
 |--------|--------|------|------|
-| Web検索・バージョン確認 | `gpt-5.4-mini` | `low` | 最速。検索精度は mini で十分 |
-| 簡単な質問・コード説明 | `gpt-5.4-mini` | デフォルト | 2倍高速、レート制限の30%で済む |
-| ファクトチェック（複数項目）・複雑な分析 | `gpt-5.4`（デフォルト） | デフォルト | 高い推論力が必要 |
-| コードレビュー | `gpt-5.4-mini` or `gpt-5.4` | デフォルト | 規模と複雑さで判断 |
+| Web検索・バージョン確認 | `gpt-5.4-mini`* | `low` | 最速。検索精度は mini で十分 |
+| 簡単な質問・コード説明 | `gpt-5.4-mini`* | デフォルト | 2倍高速、コスト効率が良い |
+| ファクトチェック（複数項目）・複雑な分析 | `gpt-5.4`（デフォルト） | デフォルト | 最高の推論力 |
+| コードレビュー | `gpt-5.4-mini`* or `gpt-5.4` | デフォルト | 規模と複雑さで判断 |
 
-推論レベル: `none`(GPT-5.2+) / `low` / `medium`(デフォルト) / `high`。
-`-c model_reasoning_effort=low` で指定。全レベル・nano モデル・プロファイル設定は
+*`gpt-5.4-mini` は CLI ピッカー未登録。`-m` / プロファイルで直接指定すれば動作する。
+
+推論レベル: `minimal` / `low` / `medium`(デフォルト) / `high` / `xhigh`。
+`-c model_reasoning_effort=low` で指定。全モデル・プロファイル設定は
 `references/cli-reference.md` を参照
 
 ## よく使うオプション
